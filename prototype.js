@@ -7,6 +7,10 @@ function prototype_print()
 		show_age: function()
 		{
 			alert("年齢は"+this.age+"です");
+		},
+		set_age: function(age)
+		{
+			this.age = age;
 		}
 	};
 
@@ -14,8 +18,16 @@ function prototype_print()
 	const character =
 	{
 		TV: "fuji",
-		__proto__: person	//personオブジェクトをプロトタイプとして参照
+		__proto__: person,	// personオブジェクトをプロトタイプとして参照
+
+		// 関数のオーバーライド
+		show_age: function()
+		{
+			alert("年齢は"+this.age+"、体重は"+this.weight+"テレビ局は"+this.TV+"です。");
+		}
+
 	}
 
-	character.show_age();	//プロトタイプで参照しているので元のメソッドも使える
+	character.set_age(50);	// プロトタイプで参照しているので元のメソッドも使える
+	character.show_age();	// オーバーライドしたメソッドが呼ばれる
 }
